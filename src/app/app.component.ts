@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     {
       title: 'Collections',
       url: '/folder/collections',
-      icon: 'Images'
+      icon: 'images'
     },   
     {
       title: 'Favorites',
