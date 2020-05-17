@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Collections',
-      url: '/folder/collections',
+      url: '/folder/Collections',
       icon: 'images'
     },   
     {
@@ -28,9 +28,9 @@ export class AppComponent implements OnInit {
       icon: 'archive'
     },
     {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
+      title: 'Camera',
+      url: '/pages/Camera',
+      icon: 'camera'
     }
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
