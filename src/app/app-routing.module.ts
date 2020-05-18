@@ -4,8 +4,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'pages/camera',
+    redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
+    data: { title: "Photo Wallet" }
   },
   {
     path: 'folder/:id',
@@ -15,6 +20,11 @@ const routes: Routes = [
     path: 'pages/:id',
     loadChildren: () => import('./pages/camera/camera.module').then( m => m.CameraPageModule)
   },
+  {
+    path: 'favorite',
+    loadChildren: () => import('./pages/favorite/favorite.module').then( m => m.FavoritePageModule),
+    data: { title: "Favorites" }
+  }
 ];
 
 @NgModule({

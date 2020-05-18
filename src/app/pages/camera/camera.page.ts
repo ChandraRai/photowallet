@@ -13,7 +13,7 @@ import { CameraService } from '../../services/camera.service';
 export class CameraPage implements OnInit {
   public title: string;
 
-  constructor( private activatedRoute: ActivatedRoute, private photoService: CameraService ) { }
+  constructor( public activatedRoute: ActivatedRoute, public photoService: CameraService ) { }
 
   ngOnInit() {
     this.title = this.activatedRoute.snapshot.paramMap.get('id');
