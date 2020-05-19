@@ -1,13 +1,3 @@
-<script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.esm.js"></script>
-  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@next/css/ionic.bundle.css"/>
-  <style>
-    :root {
-      --ion-safe-area-top: 20px;
-      --ion-safe-area-bottom: 22px;
-    }
-  </style>
-
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -19,19 +9,21 @@
 
 <ion-content > 
   <ion-list *ngFor="let update of updateList">
-    <ion-list-header><h3>{{ heading }}</h3>
-      
+    <ion-list-header><h3>{{ heading }}</h3>      
     </ion-list-header>
 
-    <ion-item *ngFor ="let temp of update.countries; let i = index">      
-      <ion-avatar slot="start">
-        <img src="../../assets/img/test.png">
+    <ion-item *ngFor ="let temp of update.countries; let i = index"> 
+      <ion-avatar slot="start" *ngFor="let flag of flagList">                 
+          <img *ngIf="(flag.name === update.countries.name)" then src="https://www.countryflags.io/{{flag[i].alpha2Code}}/shiny/64.png">         
       </ion-avatar>
       <ion-label>
         <h2>{{ update.countries[i].name }}</h2>
         <ion-text color="warning"><h3>Cases: {{ update.countries[i].cases }}</h3></ion-text>
         <ion-text color="danger"> <p>Deaths: {{ update.countries[i].deaths }} </p></ion-text>
-      </ion-label>
+      </ion-label> 
+  
     </ion-item>
+
+
   </ion-list>
 </ion-content>

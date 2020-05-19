@@ -33,7 +33,16 @@ export class AppComponent implements OnInit {
       icon: 'camera'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = [ 
+    { title: 'Developer', 
+      url: '/about', 
+      icon: 'person'}, 
+    {
+      title: 'App', 
+      url: '/about', 
+      icon: 'code-slash'
+    }
+  ];
 
   constructor(
     private platform: Platform,

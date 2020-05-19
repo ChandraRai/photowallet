@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { CovidDataService } from '../../services/covid-data.service';
-import { Observable } from 'rxjs';
-
+import { CountryFlagService } from '../../services/country-flag.service';
 
 
 @Component({
@@ -15,18 +14,21 @@ export class HomePage implements OnInit {
   public title: string;
   public heading: string;  
   
-  //updateList: Array<covidModal>;
-  updateList: any = [];
+  updateList: any = [];  
+  flagList: any = [];
 
-  constructor( private route: ActivatedRoute, private CovidDataService: CovidDataService ) {  
-  }
+  constructor( private route: ActivatedRoute, private CovidDataService: CovidDataService, 
+    private CountryFlagService: CountryFlagService ) { }
 
   ngOnInit() {
     this.title = this.route.snapshot.data.title;
     this.heading = "Current COVID-19 updates";
-    this.displayList();
+    this.displayList(); 
+    this.displayFlagList();   
+    this.test();
   }
 
+  // Display covid list
   displayList(): void {
     this.CovidDataService.getList().subscribe(data => {
       //console.log(data);
@@ -34,17 +36,21 @@ export class HomePage implements OnInit {
       this.updateList = Array.of(this.updateList);
     });
   }
-}
 
-export interface covidModal {
-  timeStamp: string,
-  total: number,
-  countries: [
-    {
-      name: string,
-      cases: number,
-      deaths: number,
-      continent: string
-    }]      
-}
+  // Display flag list
+  displayFlagList(): void {
+    this.CountryFlagService.getList().subscribe(data => {
+      console.log(data);
+      this.flagList = data;
+      this.flagList = Array.of(this.flagList);
+    });
+  }
 
+  test(): void {
+    if(this.flagList.name == this.updateList.name) {
+      console.log(this.flagList.name);
+    }
+  }
+
+
+}
