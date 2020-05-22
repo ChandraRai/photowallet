@@ -7,8 +7,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>  
+<ion-content>
+  <div *ngIf="this.title == 'App'; else developer">
+    <ion-card-subtitle class="ion-margin">Photo Wallet is</ion-card-subtitle>
     <ion-card-content>
-      The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+      Started by a small team of energetic developers at TechnoPark Company, Photo Wallet is a hybrid mobile application
+      that can be a close
+      companion for photography. We're dedicated to giving you the very best user experience, with a focus
+      on web enabled camera, picture uploads, and current updates on news feeds.
+      We hope you enjoy our product as much as we enjoy offering them to you.<br><br>If you have any questions
+      or comments, please don't hesitate to contact us at <a>nikhilrai.fourteen@gmail.com</a>.
     </ion-card-content>
+  </div>
+  <ng-template #developer>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-avatar>
+          <img src="../../../assets/img/test.png">
+        </ion-avatar>
+        <ion-card-content>
+          <h4>Chandra K. Rai</h4>
+          <ion-text>nikhilrai.fourteen@gmail.com</ion-text>         
+          <h4><a>linkedin.com/in/chandrakrai</a></h4>
+          <h4><a>http://chandrakrai.atwebpages.com</a></h4>
+        </ion-card-content>
+      </ion-item>
+    </ion-list>
+  </ng-template>
+
 </ion-content>

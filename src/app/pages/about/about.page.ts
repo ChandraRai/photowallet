@@ -9,10 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 export class AboutPage implements OnInit {
   public title: string;
 
-  constructor( private route: ActivatedRoute ) { }
+  constructor( private activatedRoute: ActivatedRoute ) { }
 
-  ngOnInit() {
-    this.title = this.route.snapshot.data.title;
+  ngOnInit() {    
+    this.title = this.activatedRoute.snapshot.paramMap.get('id');    
   }
-
 }

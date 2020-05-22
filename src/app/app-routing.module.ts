@@ -26,9 +26,8 @@ const routes: Routes = [
     data: { title: "Favorites" }
   },
   {
-    path: 'about',
-    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule),
-    data: { title: "About" }
+    path: 'about/:id',
+    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)   
   }
 ];
 

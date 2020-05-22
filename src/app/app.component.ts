@@ -35,11 +35,11 @@ export class AppComponent implements OnInit {
   ];
   public labels = [ 
     { title: 'Developer', 
-      url: '/about', 
+      url: '/about/Developer', 
       icon: 'person'}, 
     {
       title: 'App', 
-      url: '/about', 
+      url: '/about/App', 
       icon: 'code-slash'
     }
   ];
