@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CovidDataService } from '../../services/covid-data.service';
 import { CountryFlagService } from '../../services/country-flag.service';
 
+import { File } from '@ionic-native/file/ngx';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -17,15 +19,21 @@ export class HomePage implements OnInit {
   updateList: any = [];  
   flagList: any = [];
 
-  constructor( private route: ActivatedRoute, private CovidDataService: CovidDataService, 
-    private CountryFlagService: CountryFlagService ) { }
+   constructor( private route: ActivatedRoute, 
+    private CovidDataService: CovidDataService, 
+    private CountryFlagService: CountryFlagService, 
+    private ionLoader: LoaderService, 
+    private file: File) { }
 
   ngOnInit() {
+    //Loading
+    this.ionLoader.showHideAutoLoader();
+    
     this.title = this.route.snapshot.data.title;
     this.heading = "Current COVID-19 updates";
     this.displayList(); 
     this.displayFlagList();   
-    this.test();
+    this.writeJSON( this.updateList);
   }
 
   // Display covid list
@@ -40,17 +48,17 @@ export class HomePage implements OnInit {
   // Display flag list
   displayFlagList(): void {
     this.CountryFlagService.getList().subscribe(data => {
-      console.log(data);
+      //console.log(data);
       this.flagList = data;
       this.flagList = Array.of(this.flagList);
     });
   }
 
-  test(): void {
-    if(this.flagList.name == this.updateList.name) {
-      console.log(this.flagList.name);
+  writeJSON(object) {
+    // object is the data you need to write as json
+    // filename is the filename
+    // no error checking done - just an example
+    return this.file.readAsText('../../assets', object)
     }
-  }
-
 
 }

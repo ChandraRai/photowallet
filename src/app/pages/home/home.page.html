@@ -7,21 +7,28 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content > 
+<ion-content>
   <ion-list *ngFor="let update of updateList">
-    <ion-list-header><h3>{{ heading }}</h3>      
+    <ion-list-header>
+      <h3>{{ heading }}</h3>
     </ion-list-header>
 
-    <ion-item *ngFor ="let temp of update.countries; let i = index"> 
-      <ion-avatar slot="start" *ngFor="let flag of flagList">                 
-          <img *ngIf="(flag.name === update.countries.name)" then src="https://www.countryflags.io/{{flag[i].alpha2Code}}/shiny/64.png">         
+    <ion-item *ngFor="let temp of update.countries; let i = index">
+      <ion-avatar slot="start" *ngFor="let flag of flagList">
+        <div *ngIf="update.countries[i].name == flag[i].name">
+          <img src="https://www.countryflags.io/{{flag[i].alpha2Code}}/shiny/64.png">          
+        </div>
       </ion-avatar>
       <ion-label>
         <h2>{{ update.countries[i].name }}</h2>
-        <ion-text color="warning"><h3>Cases: {{ update.countries[i].cases }}</h3></ion-text>
-        <ion-text color="danger"> <p>Deaths: {{ update.countries[i].deaths }} </p></ion-text>
-      </ion-label> 
-  
+        <ion-text color="warning">
+          <h3>Cases: {{ update.countries[i].cases }}</h3>
+        </ion-text>
+        <ion-text color="danger">
+          <p>Deaths: {{ update.countries[i].deaths }} </p>
+        </ion-text>
+      </ion-label>
+
     </ion-item>
 
 
