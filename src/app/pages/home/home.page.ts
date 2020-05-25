@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { CovidDataService } from '../../services/covid-data.service';
 import { CountryFlagService } from '../../services/country-flag.service';
-
-import { File } from '@ionic-native/file/ngx';
 import { LoaderService } from '../../services/loader.service';
+
 
 @Component({
   selector: 'app-home',
@@ -22,8 +20,7 @@ export class HomePage implements OnInit {
    constructor( private route: ActivatedRoute, 
     private CovidDataService: CovidDataService, 
     private CountryFlagService: CountryFlagService, 
-    private ionLoader: LoaderService, 
-    private file: File) { }
+    private ionLoader: LoaderService ) { }
 
   ngOnInit() {
     //Loading
@@ -32,8 +29,7 @@ export class HomePage implements OnInit {
     this.title = this.route.snapshot.data.title;
     this.heading = "Current COVID-19 updates";
     this.displayList(); 
-    this.displayFlagList();   
-    this.writeJSON( this.updateList);
+    this.displayFlagList();  
   }
 
   // Display covid list
@@ -53,12 +49,4 @@ export class HomePage implements OnInit {
       this.flagList = Array.of(this.flagList);
     });
   }
-
-  writeJSON(object) {
-    // object is the data you need to write as json
-    // filename is the filename
-    // no error checking done - just an example
-    return this.file.readAsText('../../assets', object)
-    }
-
 }

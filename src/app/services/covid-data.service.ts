@@ -6,7 +6,7 @@ import { Observable, Subject } from "rxjs";
   providedIn: 'root'
 })
 export class CovidDataService {
-  private endpoint = 'http://covid19-update-api.herokuapp.com/api/v1/world';
+  private endpoint = 'https://covid19-update-api.herokuapp.com/api/v1/world';
 
   constructor( private http: HttpClient ) { }
 

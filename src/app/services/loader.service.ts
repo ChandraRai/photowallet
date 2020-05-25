@@ -9,8 +9,7 @@ export class LoaderService {
   constructor( public loadingController: LoadingController ) { }
 
   //Loading method
-  showHideAutoLoader() {
-    
+  showHideAutoLoader() {    
     this.loadingController.create({
       message: 'Please wait...',
       backdropDismiss:true,
@@ -27,7 +26,6 @@ export class LoaderService {
 
   // Show the loader for infinite time
   showLoader() {
-
     this.loadingController.create({
       message: 'Please wait...'
     }).then((res) => {
@@ -38,7 +36,6 @@ export class LoaderService {
 
   // Hide the loader if already created otherwise return error
   hideLoader() {
-
     this.loadingController.dismiss().then((res) => {
       console.log('Loading dismissed!', res);
     }).catch((error) => {

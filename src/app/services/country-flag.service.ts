@@ -6,7 +6,7 @@ import { Observable, Subject } from "rxjs";
   providedIn: 'root'
 })
 export class CountryFlagService {
-  private endpoint = 'http://restcountries.eu/rest/v2/all';
+  private endpoint = 'https://restcountries.eu/rest/v2/all';
 
   constructor( private http: HttpClient ) { }
 

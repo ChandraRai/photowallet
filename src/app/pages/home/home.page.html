@@ -8,15 +8,28 @@
 </ion-header>
 
 <ion-content>
+  <!-- Searchbar with cancel button shown on focus -->
+  <ion-searchbar showCancelButton="focus"></ion-searchbar>
   <ion-list *ngFor="let update of updateList">
     <ion-list-header>
-      <h3>{{ heading }}</h3>
+      <h3 text-center>{{ heading }}</h3>
     </ion-list-header>
-
+    <!-- Total and timestamp -->
+   
+      <ion-item lines="none">
+        <ion-badge>Total</ion-badge>
+        <ion-badge color="medium">{{ update.total }}</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-badge>{{update.timeStamp}}</ion-badge>
+      </ion-item>
+    
     <ion-item *ngFor="let temp of update.countries; let i = index">
       <ion-avatar slot="start" *ngFor="let flag of flagList">
-        <div *ngIf="update.countries[i].name == flag[i].name">
-          <img src="https://www.countryflags.io/{{flag[i].alpha2Code}}/shiny/64.png">          
+        <div *ngFor="let temp of update.countries; let j = index">
+          <ion-label *ngIf="flag[j].name == update.countries[i].name">
+            <img src="https://www.countryflags.io/{{flag[j].alpha2Code}}/shiny/64.png">
+          </ion-label>
         </div>
       </ion-avatar>
       <ion-label>
@@ -28,9 +41,6 @@
           <p>Deaths: {{ update.countries[i].deaths }} </p>
         </ion-text>
       </ion-label>
-
     </ion-item>
-
-
   </ion-list>
 </ion-content>
