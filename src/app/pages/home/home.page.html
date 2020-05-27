@@ -3,27 +3,24 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ title }}</ion-title>
+    <!-- Searchbar with cancel button shown on focus -->
+    <ion-searchbar (ionInput)="getSearchList($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- Searchbar with cancel button shown on focus -->
-  <ion-searchbar showCancelButton="focus"></ion-searchbar>
   <ion-list *ngFor="let update of updateList">
     <ion-list-header>
-      <h3 text-center>{{ heading }}</h3>
+      <h3>{{ heading }}</h3>
     </ion-list-header>
     <!-- Total and timestamp -->
-   
-      <ion-item lines="none">
-        <ion-badge>Total</ion-badge>
-        <ion-badge color="medium">{{ update.total }}</ion-badge>
-      </ion-item>
-      <ion-item>
-        <ion-badge>{{update.timeStamp}}</ion-badge>
-      </ion-item>
-    
+    <ion-item>  
+      <ion-chip outline color="primary">
+        <ion-icon name="pulse"></ion-icon>
+        <ion-label>Total {{ update.total }}</ion-label> 
+      </ion-chip>
+      <ion-label>{{ update.timeStamp }}</ion-label> 
+    </ion-item>
     <ion-item *ngFor="let temp of update.countries; let i = index">
       <ion-avatar slot="start" *ngFor="let flag of flagList">
         <div *ngFor="let temp of update.countries; let j = index">

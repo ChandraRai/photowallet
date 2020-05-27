@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CovidDataService } from '../../services/covid-data.service';
 import { CountryFlagService } from '../../services/country-flag.service';
 import { LoaderService } from '../../services/loader.service';
-
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -16,37 +16,72 @@ export class HomePage implements OnInit {
   
   updateList: any = [];  
   flagList: any = [];
+  myList: any = [];
+  sList: string;
 
    constructor( private route: ActivatedRoute, 
     private CovidDataService: CovidDataService, 
     private CountryFlagService: CountryFlagService, 
-    private ionLoader: LoaderService ) { }
+    private ionLoader: LoaderService,
+    public alertController: AlertController ) {  }
 
   ngOnInit() {
     //Loading
-    this.ionLoader.showHideAutoLoader();
-    
+    this.ionLoader.showHideAutoLoader();   
+
     this.title = this.route.snapshot.data.title;
     this.heading = "Current COVID-19 updates";
     this.displayList(); 
-    this.displayFlagList();  
+    this.displayFlagList(); 
   }
 
   // Display covid list
-  displayList(): void {
+  async displayList() {
     this.CovidDataService.getList().subscribe(data => {
       //console.log(data);
       this.updateList = data;
-      this.updateList = Array.of(this.updateList);
+      return this.updateList = Array.of(this.updateList);
     });
   }
 
   // Display flag list
-  displayFlagList(): void {
+  async displayFlagList() {
     this.CountryFlagService.getList().subscribe(data => {
       //console.log(data);
       this.flagList = data;
-      this.flagList = Array.of(this.flagList);
+      return this.flagList = Array.of(this.flagList);
     });
   }
+
+  async getSearchList(ev: any) { 
+    const query = ev.target.value;
+    this.myList = await this.updateList;
+    
+    if(query == '') {
+      this.displayList();
+    } 
+
+    this.myList = this.myList.filter(value => {
+      for(var i = 0; i < value.countries.length; i++)        
+        if(value.countries[i].name == query) {
+          //console.log(value.countries[i]); 
+          this.presentAlert(value.countries[i]);
+          //return (value.countries[i].name.indexOf(query));           
+        } 
+    }); 
+  }
+
+  async presentAlert(s: any) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: s.name,
+      subHeader: 'Cases: ' + s.cases,
+      message: 'Deaths: ' + s.deaths,
+      buttons: ['OK']
+    });
+    await alert.present();    
+  }    
 }
+        
+    
+        
