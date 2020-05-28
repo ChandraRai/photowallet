@@ -1,18 +1,27 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    
     <!-- Searchbar with cancel button shown on focus -->
-    <ion-searchbar (ionInput)="getSearchList($event)"></ion-searchbar>
+    <ion-searchbar (ionInput)="getSearchList($event)" color="light"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list *ngFor="let update of updateList">
+    <div *ngIf="mobileScale; else ipadScale">
     <ion-list-header>
       <h3>{{ heading }}</h3>
     </ion-list-header>
+  </div>
+  <ng-template #ipadScale>
+    <ion-list-header>
+      <ion-title>{{ heading }}</ion-title>
+    </ion-list-header>
+  </ng-template>
+
     <!-- Total and timestamp -->
     <ion-item>  
       <ion-chip outline color="primary">

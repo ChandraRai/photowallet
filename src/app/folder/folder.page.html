@@ -1,32 +1,26 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ folder }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="">
-
   <ion-card *ngFor="let site of (siteList | async)">
-
     <ion-item>
       <ion-avatar item-start>
         <img [src]="site.imageurl">
       </ion-avatar>
-      
       <ion-card-title>
         {{ site.location }}
-        </ion-card-title>     
+      </ion-card-title>
     </ion-item>
-  
-    <img [src]="site.imageurl">   
-  
+    <img [src]="site.imageurl">
     <ion-card-content>
       <h2>{{ site.description }}</h2>
     </ion-card-content>
-  
     <ion-row>
       <ion-col>
         <button ion-button color="primary" clear small icon-start>
@@ -41,15 +35,11 @@
         </button>
       </ion-col>
       <ion-col align-self-center text-center>
-        <ion-note> 
-          {{ site.owner }}        
+        <ion-note>
+          {{ site.owner }}
           {{ site.updated }}
         </ion-note>
       </ion-col>
     </ion-row>
-  
-  </ion-card> 
-
+  </ion-card>
 </ion-content>
-
-  

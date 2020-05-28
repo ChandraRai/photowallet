@@ -13,26 +13,35 @@ import { AlertController } from '@ionic/angular';
 export class HomePage implements OnInit {
   public title: string;
   public heading: string;  
+  public mobileScale: boolean;
   
   updateList: any = [];  
   flagList: any = [];
   myList: any = [];
-  sList: string;
 
    constructor( private route: ActivatedRoute, 
     private CovidDataService: CovidDataService, 
     private CountryFlagService: CountryFlagService, 
     private ionLoader: LoaderService,
-    public alertController: AlertController ) {  }
+    public alertController: AlertController ) { }
 
   ngOnInit() {
     //Loading
-    this.ionLoader.showHideAutoLoader();   
+    this.ionLoader.showHideAutoLoader();
+    this.screenSize();
 
     this.title = this.route.snapshot.data.title;
     this.heading = "Current COVID-19 updates";
     this.displayList(); 
     this.displayFlagList(); 
+  }
+  //Device scale
+  screenSize() {
+    this.mobileScale = true;
+
+    if(window.screen.width > 400) {
+      this.mobileScale = false;
+    }
   }
 
   // Display covid list
@@ -54,7 +63,7 @@ export class HomePage implements OnInit {
   }
 
   async getSearchList(ev: any) { 
-    const query = ev.target.value;
+    const query = ev.target.value.toLowerCase();
     this.myList = await this.updateList;
     
     if(query == '') {
@@ -63,7 +72,7 @@ export class HomePage implements OnInit {
 
     this.myList = this.myList.filter(value => {
       for(var i = 0; i < value.countries.length; i++)        
-        if(value.countries[i].name == query) {
+        if(value.countries[i].name.toLowerCase() == query) {
           //console.log(value.countries[i]); 
           this.presentAlert(value.countries[i]);
           //return (value.countries[i].name.indexOf(query));           
