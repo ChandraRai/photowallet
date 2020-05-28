@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    
+
     <!-- Searchbar with cancel button shown on focus -->
     <ion-searchbar (ionInput)="getSearchList($event)" color="light"></ion-searchbar>
   </ion-toolbar>
@@ -11,24 +11,24 @@
 
 <ion-content>
   <ion-list *ngFor="let update of updateList">
-    <div *ngIf="mobileScale; else ipadScale">
-    <ion-list-header>
-      <h3>{{ heading }}</h3>
-    </ion-list-header>
-  </div>
-  <ng-template #ipadScale>
-    <ion-list-header>
-      <ion-title>{{ heading }}</ion-title>
-    </ion-list-header>
-  </ng-template>
+    <ion-text>
+      <h3 class="ion-text-center">{{ heading }}</h3>
+    </ion-text>
 
     <!-- Total and timestamp -->
-    <ion-item>  
+    <ion-item>
       <ion-chip outline color="primary">
         <ion-icon name="pulse"></ion-icon>
-        <ion-label>Total {{ update.total }}</ion-label> 
+        <ion-label>Total {{ update.total }}</ion-label>
       </ion-chip>
-      <ion-label>{{ update.timeStamp }}</ion-label> 
+      <div *ngIf="mobileScale; else ipadScale">
+        <ion-chip color="primary">
+          <ion-label>Last updated: {{ update.timeStamp | date }}</ion-label>
+        </ion-chip>
+      </div>
+      <ng-template #ipadScale>
+        <ion-chip slot="end" color="primary">Last updated: {{ update.timeStamp }}</ion-chip>
+      </ng-template>
     </ion-item>
     <ion-item *ngFor="let temp of update.countries; let i = index">
       <ion-avatar slot="start" *ngFor="let flag of flagList">

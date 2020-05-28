@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-folder',
@@ -13,11 +14,14 @@ export class FolderPage implements OnInit {
 
   siteList: Observable<Site[]>;
 
-  constructor(private activatedRoute: ActivatedRoute, HttpClient: HttpClient) {
+  constructor(public activatedRoute: ActivatedRoute, 
+    public HttpClient: HttpClient,
+    private ionLoader: LoaderService ) {
     this.siteList = HttpClient.get<Site[]>('https://imageapis.herokuapp.com/api/images');
   } 
 
   ngOnInit() {
+    this.ionLoader.showHideAutoLoader();
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
 }

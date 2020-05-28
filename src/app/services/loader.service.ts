@@ -10,8 +10,8 @@ export class LoaderService {
 
   //Loading method
   showHideAutoLoader() {    
-    this.loadingController.create({
-      message: 'Please wait...',
+    this.loadingController.create({   
+      cssClass: 'custom-loader',         
       backdropDismiss:true,
       duration: 2000,
       spinner: 'bubbles'

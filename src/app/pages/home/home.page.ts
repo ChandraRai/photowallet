@@ -33,13 +33,13 @@ export class HomePage implements OnInit {
     this.title = this.route.snapshot.data.title;
     this.heading = "Current COVID-19 updates";
     this.displayList(); 
-    this.displayFlagList(); 
+    this.displayFlagList();
   }
   //Device scale
   screenSize() {
     this.mobileScale = true;
 
-    if(window.screen.width > 400) {
+    if(window.screen.width > 550) {
       this.mobileScale = false;
     }
   }

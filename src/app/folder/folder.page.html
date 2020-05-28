@@ -9,17 +9,25 @@
 
 <ion-content class="">
   <ion-card *ngFor="let site of (siteList | async)">
-    <ion-item>
+    <ion-item lines="none">
       <ion-avatar item-start>
         <img [src]="site.imageurl">
       </ion-avatar>
-      <ion-card-title>
+      <ion-card-title class="ion-padding-start">
         {{ site.location }}
       </ion-card-title>
+      <ion-note slot="end">
+        {{ site.owner }}
+      </ion-note>      
     </ion-item>
+    <ion-item>
+      <ion-note slot="end"> 
+        {{ site.updated | date }}
+      </ion-note>
+    </ion-item>   
     <img [src]="site.imageurl">
     <ion-card-content>
-      <h2>{{ site.description }}</h2>
+      <h2 class="ion-text-center">{{ site.description }}</h2>
     </ion-card-content>
     <ion-row>
       <ion-col>
@@ -34,12 +42,7 @@
           <div> {{ site.tags }} </div>
         </button>
       </ion-col>
-      <ion-col align-self-center text-center>
-        <ion-note>
-          {{ site.owner }}
-          {{ site.updated }}
-        </ion-note>
-      </ion-col>
+    
     </ion-row>
   </ion-card>
 </ion-content>
