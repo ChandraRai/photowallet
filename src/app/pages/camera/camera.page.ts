@@ -16,7 +16,7 @@ export class CameraPage implements OnInit {
   constructor( public activatedRoute: ActivatedRoute, public photoService: CameraService ) { }
 
   ngOnInit() {
-    this.title = this.activatedRoute.snapshot.paramMap.get('id');
+    this.title = this.activatedRoute.snapshot.data.title;
     this.photoService.loadSaved();
   }
 }

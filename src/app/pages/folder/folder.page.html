@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let site of (siteList | async)" class="ion-padding-top">
+    <ion-item lines="none">
+      <ion-avatar item-start>
+        <img [src]="site.imageurl">
+      </ion-avatar>
+      <ion-card-title class="ion-padding-start">
+        {{ site.location }}
+      </ion-card-title>
+      <ion-note slot="end">
+        {{ site.owner }}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-note slot="end" class="ion-no-padding">
+        {{ site.updated | date }}
+      </ion-note>
+    </ion-item>
+    <img [src]="site.imageurl">
+    <ion-card-content>
+      <h2 class="ion-text-center">{{ site.description }}</h2>
+    </ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button color="primary" clear small icon-start>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{ site.likes }}</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button color="primary" clear small icon-start>
+            <ion-icon name="heart"></ion-icon>
+            <div> {{ site.tags }} </div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

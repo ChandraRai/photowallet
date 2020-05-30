@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
@@ -13,12 +13,14 @@ const routes: Routes = [
     data: { title: "Photo Wallet" }
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'collections',
+    loadChildren: () => import('./pages/folder/folder.module').then( m => m.FolderPageModule),
+    data: { title: "Collections" }
   },
   {
-    path: 'pages/:id',
-    loadChildren: () => import('./pages/camera/camera.module').then( m => m.CameraPageModule)
+    path: 'camera',
+    loadChildren: () => import('./pages/camera/camera.module').then( m => m.CameraPageModule),
+    data: { title: "Camera" }
   },
   {
     path: 'favorite',
@@ -26,8 +28,14 @@ const routes: Routes = [
     data: { title: "Favorites" }
   },
   {
-    path: 'about/:id',
-    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)   
+    path: 'developer',
+    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule),
+    data: {title: "Developer"}
+  },
+  {
+    path: 'app',
+    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule),
+    data: {title: "App"}
   }
 ];
 

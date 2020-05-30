@@ -13,8 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-import { File } from '@ionic-native/file/ngx';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +27,6 @@ import { File } from '@ionic-native/file/ngx';
   ],
   providers: [
     StatusBar, 
-    File,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

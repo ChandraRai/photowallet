@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Collections',
-      url: '/folder/Collections',
+      url: '/collections',
       icon: 'images'
     },   
     {
@@ -31,17 +31,17 @@ export class AppComponent implements OnInit {
     },    
     {
       title: 'Camera',
-      url: '/pages/Camera',
+      url: '/camera',
       icon: 'camera'
     }
   ];
   public labels = [ 
     { title: 'Developer', 
-      url: '/about/Developer', 
+      url: '/developer', 
       icon: 'person'}, 
     {
       title: 'App', 
-      url: '/about/App', 
+      url: '/app', 
       icon: 'code-slash'
     }
   ];

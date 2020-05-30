@@ -20,7 +20,7 @@ export class CovidDataService {
   };
 
   //method to get list
-  public getList(): Observable<any> {
+  public getCovidList(): Observable<any> {
     return this.http.get<any>(this.endpoint);
   }
 }

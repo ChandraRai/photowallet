@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
 
   // Display covid list
   async displayList() {
-    this.CovidDataService.getList().subscribe(data => {
+    this.CovidDataService.getCovidList().subscribe(data => {
       //console.log(data);
       this.updateList = data;
       return this.updateList = Array.of(this.updateList);
@@ -55,13 +55,14 @@ export class HomePage implements OnInit {
 
   // Display flag list
   async displayFlagList() {
-    this.CountryFlagService.getList().subscribe(data => {
+    this.CountryFlagService.getFlagList().subscribe(data => {
       //console.log(data);
       this.flagList = data;
       return this.flagList = Array.of(this.flagList);
     });
   }
 
+  //Searchbar 
   async getSearchList(ev: any) { 
     const query = ev.target.value.toLowerCase();
     this.myList = await this.updateList;
@@ -80,6 +81,7 @@ export class HomePage implements OnInit {
     }); 
   }
 
+  //Display search item as alert
   async presentAlert(s: any) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',

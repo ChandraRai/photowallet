@@ -9,10 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 export class FavoritePage implements OnInit {
   public title: string;
 
-  constructor( private route: ActivatedRoute ) { }
+  constructor( private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit() {
-    this.title = this.route.snapshot.data.title;
+    this.title = this.activatedRoute.snapshot.data.title;
   }
 
 }

@@ -11,7 +11,7 @@ export class CountryFlagService {
   constructor( private http: HttpClient ) { }
 
   //method to get list
-  public getList(): Observable<any> {
+  public getFlagList(): Observable<any> {
     return this.http.get<any>(this.endpoint);
   }
 }

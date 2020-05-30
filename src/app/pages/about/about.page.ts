@@ -12,6 +12,6 @@ export class AboutPage implements OnInit {
   constructor( private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit() {    
-    this.title = this.activatedRoute.snapshot.paramMap.get('id');    
+    this.title = this.activatedRoute.snapshot.data.title;    
   }
 }
