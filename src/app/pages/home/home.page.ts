@@ -79,6 +79,9 @@ export class HomePage implements OnInit {
           //return (value.countries[i].name.indexOf(query));           
         } 
     }); 
+
+
+
   }
 
   //Display search item as alert

@@ -13,29 +13,38 @@
           </ion-menu-toggle>
         </ion-list>
 
-        <!--About section goes here-->
-        <ion-list id="labels-list">   
-          <ion-list-header>About</ion-list-header>       
-          <ion-menu-toggle auto-hide="false" *ngFor="let label of labels; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[label.url]" detail="false"
-              [class.selected]="selectedIndex == i" lines="none">
-              <ion-icon slot="start" [ios]="label.icon + '-outline'" [md]="label.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ label.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
 
-        <!--Terms section goes here-->
-        <ion-list id="terms-list">    
-          <ion-menu-toggle auto-hide="false" *ngFor="let t of terms; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[t.url]" detail="false"
-              [class.selected]="selectedIndex == i" lines="none">              
-              <ion-label>{{ t.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+              <!--About section goes here-->
+              <ion-list id="labels-list">
+                <ion-list-header>About</ion-list-header>
+                <ion-menu-toggle auto-hide="false" *ngFor="let label of labels; let i = index">
+                  <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[label.url]" detail="false"
+                    [class.selected]="selectedIndex == i" lines="none">
+                    <ion-icon slot="start" [ios]="label.icon + '-outline'" [md]="label.icon + '-sharp'"></ion-icon>
+                    <ion-label>{{ label.title }}</ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+              </ion-list>
+            </ion-col>
+          </ion-row>        
 
-
+        <!--Terms section goes here-->       
+          <ion-row>
+            <ion-col>
+              <ion-list id="terms-list">
+                <ion-menu-toggle auto-hide="false" *ngFor="let t of terms; let i = index">
+                  <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[t.url]" detail="false"
+                    [class.selected]="selectedIndex == i" lines="none">
+                    <ion-label>{{ t.title }}</ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-content>
     </ion-menu>
 
