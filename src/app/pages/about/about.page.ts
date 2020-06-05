@@ -7,11 +7,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./about.page.scss'],
 })
 export class AboutPage implements OnInit {
-  public title: string;
+  public title: string; 
 
-  constructor( private activatedRoute: ActivatedRoute ) { }
+  constructor( private activatedRoute: ActivatedRoute ) { }  
 
   ngOnInit() {    
-    this.title = this.activatedRoute.snapshot.data.title;    
+    this.title = this.activatedRoute.snapshot.data.title;       
   }
 }

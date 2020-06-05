@@ -23,9 +23,9 @@ const routes: Routes = [
     data: { title: "Camera" }
   },
   {
-    path: 'favorite',
+    path: 'profile',
     loadChildren: () => import('./pages/favorite/favorite.module').then( m => m.FavoritePageModule),
-    data: { title: "Favorites" }
+    data: { title: "Profile" }
   },
   {
     path: 'developer',
@@ -36,6 +36,21 @@ const routes: Routes = [
     path: 'app',
     loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule),
     data: {title: "App"}
+  },
+  {
+    path: 'privacy',
+    loadChildren: () => import('./pages/policy/policy.module').then( m => m.PolicyPageModule),
+    data: {title: "Privacy Policy"}
+  },
+  {
+    path: 'terms',
+    loadChildren: () => import('./pages/policy/policy.module').then( m => m.PolicyPageModule),
+    data: {title: "Terms of Use"}
+  },
+  {
+    path: 'cookies',
+    loadChildren: () => import('./pages/policy/policy.module').then( m => m.PolicyPageModule),
+    data: {title: "Cookies Policy"}
   }
 ];
 

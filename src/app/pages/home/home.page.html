@@ -3,10 +3,10 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-
-    <!-- Searchbar with cancel button shown on focus -->
-    <ion-searchbar (ionInput)="getSearchList($event)" color="light"></ion-searchbar>
+    <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
+  <!-- Searchbar with cancel button shown on focus -->
+  <ion-searchbar (ionInput)="getSearchList($event)" color="light"></ion-searchbar>
 </ion-header>
 
 <ion-content>
@@ -49,5 +49,4 @@
       </ion-label>
     </ion-item>
   </ion-list>
-  
 </ion-content>

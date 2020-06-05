@@ -8,11 +8,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FavoritePage implements OnInit {
   public title: string;
+  type: string;  
 
   constructor( private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit() {
     this.title = this.activatedRoute.snapshot.data.title;
+    this.type = 'Personal Info';
+  }
+
+  //Switch tab 
+  segmentChanged(ev: any) {
+    //console.log('Segment changed', ev);    
   }
 
 }

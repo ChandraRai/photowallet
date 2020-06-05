@@ -1,20 +1,32 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="secondary">   
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/"></ion-back-button>
-      </ion-buttons>    
-    <ion-title>{{ title }}</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <!-- Segment buttons with text -->
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="type">
+      <ion-segment-button value="Personal Info">
+        Personal Info
+      </ion-segment-button>
+      <ion-segment-button value="Contacts">
+        Contacts
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- Segment buttons with text -->
-  <ion-segment color="primary">
-    <ion-segment-button value="friends">
-      Friends
-    </ion-segment-button>
-    <ion-segment-button value="places">
-      Places
-    </ion-segment-button>
-  </ion-segment>
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'Personal Info'">
+      <ion-item>
+        Chandra K. Rai
+      </ion-item>
+    </ion-list> 
+    <ion-list *ngSwitchCase="'Contacts'">
+      <ion-item>
+        nikhilrai.fourteen@gmail.com
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

@@ -73,7 +73,7 @@ export class HomePage implements OnInit {
 
     this.myList = this.myList.filter(value => {
       for(var i = 0; i < value.countries.length; i++)        
-        if(value.countries[i].name.toLowerCase() == query) {
+        if(value.countries[i].name.toLowerCase() === query) {
           //console.log(value.countries[i]); 
           this.presentAlert(value.countries[i]);
           //return (value.countries[i].name.indexOf(query));           

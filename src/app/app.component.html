@@ -3,7 +3,7 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Menu</ion-list-header> 
+          <ion-list-header>Menu</ion-list-header>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none"
               detail="false" [class.selected]="selectedIndex == i">
@@ -13,9 +13,9 @@
           </ion-menu-toggle>
         </ion-list>
 
-    <!--About section goes here-->
-        <ion-list id="labels-list">
-          <ion-list-header>About</ion-list-header>
+        <!--About section goes here-->
+        <ion-list id="labels-list">   
+          <ion-list-header>About</ion-list-header>       
           <ion-menu-toggle auto-hide="false" *ngFor="let label of labels; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[label.url]" detail="false"
               [class.selected]="selectedIndex == i" lines="none">
@@ -24,6 +24,18 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+
+        <!--Terms section goes here-->
+        <ion-list id="terms-list">    
+          <ion-menu-toggle auto-hide="false" *ngFor="let t of terms; let i = index">
+            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[t.url]" detail="false"
+              [class.selected]="selectedIndex == i" lines="none">              
+              <ion-label>{{ t.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+
       </ion-content>
     </ion-menu>
 
