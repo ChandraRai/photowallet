@@ -4,13 +4,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/layout',
     pathMatch: 'full'
   },
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    data: { title: "Photo Wallet" }
+    data: { title: "Home" }
   },
   {
     path: 'collections',
@@ -51,6 +51,10 @@ const routes: Routes = [
     path: 'cookies',
     loadChildren: () => import('./pages/policy/policy.module').then( m => m.PolicyPageModule),
     data: {title: "Cookies Policy"}
+  },
+  {
+    path: 'layout',
+    loadChildren: () => import('./pages/layout/layout.module').then( m => m.LayoutPageModule)
   }
 ];
 
