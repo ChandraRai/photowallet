@@ -6,7 +6,10 @@
     <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
   <!-- Searchbar with cancel button shown on focus -->
-  <ion-searchbar (ionInput)="getSearchList($event)" color="light"></ion-searchbar>
+  <ion-searchbar
+    (ionInput)="getSearchList($event)"
+    color="light"
+  ></ion-searchbar>
 </ion-header>
 
 <ion-content>
@@ -27,14 +30,19 @@
         </ion-chip>
       </div>
       <ng-template #ipadScale>
-        <ion-chip slot="end" color="primary">Last updated: {{ update.timeStamp }}</ion-chip>
+        <ion-chip slot="end" color="primary"
+          >Last updated: {{ update.timeStamp }}</ion-chip
+        >
       </ng-template>
     </ion-item>
+
     <ion-item *ngFor="let temp of update.countries; let i = index">
       <ion-avatar slot="start" *ngFor="let flag of flagList">
         <div *ngFor="let temp of update.countries; let j = index">
           <ion-label *ngIf="flag[j].name == update.countries[i].name">
-            <img src="https://www.countryflags.io/{{flag[j].alpha2Code}}/shiny/64.png">
+            <img
+              src="https://www.countryflags.io/{{flag[j].alpha2Code}}/shiny/64.png"
+            />
           </ion-label>
         </div>
       </ion-avatar>
@@ -44,7 +52,7 @@
           <h3>Cases: {{ update.countries[i].cases }}</h3>
         </ion-text>
         <ion-text color="danger">
-          <p>Deaths: {{ update.countries[i].deaths }} </p>
+          <p>Deaths: {{ update.countries[i].deaths }}</p>
         </ion-text>
       </ion-label>
     </ion-item>
