@@ -11,14 +11,12 @@ const routes: Routes = [
       {
         path: "home",
         loadChildren: () =>
-          import("../../pages/home/home.module").then((m) => m.HomePageModule),
+          import("../home/home.module").then((m) => m.HomePageModule),
       },
       {
-        path: "developer",
+        path: "chart",
         loadChildren: () =>
-          import("../../pages/about/about.module").then(
-            (m) => m.AboutPageModule
-          ),
+          import("../chart/chart.module").then((m) => m.ChartPageModule),
       },
     ],
   },

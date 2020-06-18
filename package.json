@@ -32,6 +32,7 @@
     "@ionic/angular": "^5.0.0",
     "@ionic/pwa-elements": "^1.5.2",
     "@types/lodash": "^4.14.152",
+    "chart.js": "^2.9.3",
     "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-file": "^6.0.2",
