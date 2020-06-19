@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { CovidDataService } from "../../services/covid-data.service";
 import { Chart } from "chart.js";
+import { getLocaleMonthNames } from "@angular/common";
 
 @Component({
   selector: "app-chart",
@@ -61,6 +62,9 @@ export class ChartPage implements OnInit {
                 },
               },
             ],
+          },
+          animation: {
+            duration: 5000,
           },
         },
       });
@@ -167,7 +171,25 @@ export class ChartPage implements OnInit {
   //method to get prediction by date and draw chart
   async lineChartPrediction() {
     this.CovidDataService.getCovidPrediction().subscribe((res) => {
-      const x = res.map((res) => res.date);
+      const x = res.map((res) => {
+        var arr = res.date.split("-");
+        var months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        return months[parseInt(arr[1], 10) - 1] + " " + arr.slice(2, 3);
+      });
+
       const y = res.map((res) => res.cases);
       //console.log(xlabels);
       //console.log(yData);
@@ -203,6 +225,14 @@ export class ChartPage implements OnInit {
           ],
         },
         options: {
+          layout: {
+            padding: {
+              left: 0,
+              right: 0,
+              top: 40,
+              bottom: 0,
+            },
+          },
           scales: {
             yAxes: [
               {
@@ -211,6 +241,9 @@ export class ChartPage implements OnInit {
                 },
               },
             ],
+          },
+          animation: {
+            duration: 5000,
           },
         },
       });
