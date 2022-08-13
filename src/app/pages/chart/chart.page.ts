@@ -14,12 +14,15 @@ export class ChartPage implements OnInit {
   constructor(private CovidDataService: CovidDataService) {}
 
   ngOnInit() {
-    this.lineChart();
-    this.lineChartPrediction();
+    // this.lineChart();
+    //this.lineChartPrediction();
+
+    //new updated covid19 api
+    this.newlineChart();
   }
 
   //method to get top 10 cases and draw line chart
-  async lineChart() {
+  /*async lineChart() {
     this.CovidDataService.getCovidList().subscribe((res) => {
       const y_lab = res["countries"].map((res) => res.cases).slice(0, 10);
       const x_lab = res["countries"].map((res) => res.name).slice(0, 10);
@@ -69,7 +72,7 @@ export class ChartPage implements OnInit {
         },
       });
     });
-  }
+  } */
 
   /*
   pieChart() {
@@ -169,7 +172,7 @@ export class ChartPage implements OnInit {
   } */
 
   //method to get prediction by date and draw chart
-  async lineChartPrediction() {
+  /*async lineChartPrediction() {
     this.CovidDataService.getCovidPrediction().subscribe((res) => {
       const x = res.map((res) => {
         var arr = res.date.split("-");
@@ -187,6 +190,8 @@ export class ChartPage implements OnInit {
           "November",
           "December",
         ];
+
+        //+(arr[1], 10) can be done
         return months[parseInt(arr[1], 10) - 1] + " " + arr.slice(2, 3);
       });
 
@@ -233,6 +238,62 @@ export class ChartPage implements OnInit {
               bottom: 0,
             },
           },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
+          animation: {
+            duration: 5000,
+          },
+        },
+      });
+    });
+  }*/
+
+  // new update
+  //method to get top 10 cases and draw line chart
+  async newlineChart() {
+    this.CovidDataService.getCovidUpdate().subscribe((res) => {
+      const y_lab = res["Countries"]
+        .map((res) => res.NewConfirmed)
+        .slice(0, 10);
+      const x_lab = res["Countries"].map((res) => res.Country).slice(0, 10);
+      const ctx = document.getElementById("lineCanvas");
+      const lineCanvas = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: x_lab,
+          datasets: [
+            {
+              //fill: false,
+              data: y_lab,
+              lineTension: 0.1,
+              backgroundColor: "rgba(75,192,192,0.4)",
+              borderColor: "rgba(75,192,192,1)",
+              borderCapStyle: "butt",
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: "miter",
+              pointBorderColor: "rgba(75,192,192,1)",
+              pointBackgroundColor: "#fff",
+              pointBorderWidth: 1,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: "rgba(75,192,192,1)",
+              pointHoverBorderColor: "rgba(220,220,220,1)",
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              spanGaps: false,
+              label: "Top 10 COVID-19 cases",
+            },
+          ],
+        },
+        options: {
           scales: {
             yAxes: [
               {

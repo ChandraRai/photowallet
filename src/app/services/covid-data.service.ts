@@ -11,6 +11,9 @@ export class CovidDataService {
     "https://covid19-update-api.herokuapp.com/api/v1/world";
   private endpoint_prediction = "https://covid19-api.org/api/prediction/np";
 
+  // new updated covid19 api
+  private endpoint_covid19_daily = "https://api.covid19api.com/summary";
+
   constructor(private http: HttpClient) {}
 
   private httpOptions = {
@@ -23,12 +26,17 @@ export class CovidDataService {
   };
 
   //method to get list
-  public getCovidList(): Observable<any> {
+  /*public getCovidList(): Observable<any> {
     return this.http.get<any>(this.endpoint_cases);
-  }
+  }*/
 
   //method to get prediction
-  public getCovidPrediction(): Observable<any> {
+  /*public getCovidPrediction(): Observable<any> {
     return this.http.get<any>(this.endpoint_prediction);
+  }*/
+
+  //method to get Covid-19 Updates
+  public getCovidUpdate(): Observable<any> {
+    return this.http.get<any>(this.endpoint_covid19_daily);
   }
 }

@@ -5,44 +5,41 @@
     </ion-buttons>
     <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
+
   <!-- Searchbar with cancel button shown on focus -->
-  <ion-searchbar
-    (ionInput)="getSearchList($event)"
-    color="light"
-  ></ion-searchbar>
+  <ion-searchbar (ionInput)="getSearchList($event)" color="light">
+  </ion-searchbar>
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let update of updateList">
+  <!-- <ion-list *ngFor="let update of updateList">
     <ion-text>
       <h3 class="ion-text-center">{{ heading }}</h3>
-    </ion-text>
+    </ion-text> -->
 
-    <!-- Total and timestamp -->
-    <ion-item>
-      <ion-chip outline color="primary">
-        <ion-icon name="pulse"></ion-icon>
-        <ion-label>Total {{ update.total }}</ion-label>
+  <!-- Total and timestamp -->
+  <!--<ion-item>
+    <ion-chip outline color="primary">
+      <ion-icon name="pulse"></ion-icon>
+      <ion-label>Total {{ update.total }}</ion-label>
+    </ion-chip>
+    <div *ngIf="mobileScale; else ipadScale">
+      <ion-chip color="primary">
+        <ion-label>Last updated: {{ update.timeStamp | date }}</ion-label>
       </ion-chip>
-      <div *ngIf="mobileScale; else ipadScale">
-        <ion-chip color="primary">
-          <ion-label>Last updated: {{ update.timeStamp | date }}</ion-label>
-        </ion-chip>
-      </div>
-      <ng-template #ipadScale>
-        <ion-chip slot="end" color="primary"
-          >Last updated: {{ update.timeStamp }}</ion-chip
-        >
-      </ng-template>
-    </ion-item>
+    </div>
+    <ng-template #ipadScale>
+      <ion-chip slot="end" color="primary"
+        >Last updated: {{ update.timeStamp }}</ion-chip
+      >
+    </ng-template>
+  </ion-item>-->
 
-    <ion-item *ngFor="let temp of update.countries; let i = index">
+  <!-- <ion-item *ngFor="let temp of update.countries; let i = index">
       <ion-avatar slot="start" *ngFor="let flag of flagList">
         <div *ngFor="let temp of update.countries; let j = index">
           <ion-label *ngIf="flag[j].name == update.countries[i].name">
-            <img
-              src="https://www.countryflags.io/{{flag[j].alpha2Code}}/shiny/64.png"
-            />
+            <img src="https://www.countryflags.io/{{flag[j].alpha2Code}}/shiny/64.png"/>
           </ion-label>
         </div>
       </ion-avatar>
@@ -53,6 +50,53 @@
         </ion-text>
         <ion-text color="danger">
           <p>Deaths: {{ update.countries[i].deaths }}</p>
+        </ion-text>
+      </ion-label>
+    </ion-item> -->
+  <!--</ion-list>-->
+  <ion-list *ngFor="let nlist of newList; let i = index">
+    <!-- Heading -->
+    <ion-text>
+      <h3 class="ion-text-center">{{ heading }}</h3>
+    </ion-text>
+
+    <!-- Head Section -->
+    <ion-item>
+      <ion-chip outline color="primary">
+        <ion-icon name="pulse"></ion-icon>
+        <ion-label
+          >Global New Confirmed: {{ nlist.Global.NewConfirmed }}</ion-label
+        >
+      </ion-chip>
+      <div *ngIf="mobileScale; else ipadScale">
+        <ion-chip color="primary">
+          <ion-label>Global New Deaths: {{ nlist.Global.NewDeaths }}</ion-label>
+        </ion-chip>
+      </div>
+      <ng-template #ipadScale>
+        <ion-chip slot="end" color="primary"
+          >Global New Deaths: {{ nlist.Global.NewDeaths }}</ion-chip
+        >
+      </ng-template>
+    </ion-item>
+
+    <!-- Countries Name -->
+    <ion-item *ngFor="let temp of nlist.Countries; let j = index">
+      <ion-avatar slot="start">
+        <div>
+          <ion-label>
+            <img src="https://countryflagsapi.com/png/{{ temp.CountryCode }}" />
+          </ion-label>
+        </div>
+      </ion-avatar>
+
+      <ion-label>
+        <h2>{{ temp.Country }}</h2>
+        <ion-text color="warning">
+          <h3>Total Cases: {{ temp.TotalConfirmed }}</h3>
+        </ion-text>
+        <ion-text color="danger">
+          <p>Total Deaths: {{ temp.TotalDeaths }}</p>
         </ion-text>
       </ion-label>
     </ion-item>
